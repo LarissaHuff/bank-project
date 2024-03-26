@@ -18,13 +18,11 @@ import java.util.List;
 @RequestMapping("/persons")
 public class PersonController {
     private final PersonService personService;
-
     @PostMapping
     public ResponseEntity<Void> register(@RequestBody PersonDTO personDTO) {
         Long createdId = personService.register(personDTO);
         return ResponseEntity.created(URI.create("/persons/" + createdId)).build();
     }
-
     @ResponseBody
     @GetMapping("/{id}")
     public PersonViewDTO findById(@PathVariable Long id) {
