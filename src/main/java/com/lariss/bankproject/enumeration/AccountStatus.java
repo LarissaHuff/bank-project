@@ -1,6 +1,6 @@
 package com.lariss.bankproject.enumeration;
 
-public enum Status {
+public enum AccountStatus {
     ACTIVE,
     DEACTIVATED,
     BLOCKED;

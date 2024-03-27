@@ -3,7 +3,7 @@ package com.lariss.bankproject.controller;
 import com.lariss.bankproject.dto.AccountDTO;
 import com.lariss.bankproject.dto.AccountViewDTO;
 import com.lariss.bankproject.enumeration.AccountType;
-import com.lariss.bankproject.enumeration.Status;
+import com.lariss.bankproject.enumeration.AccountStatus;
 import com.lariss.bankproject.service.AccountService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -38,7 +38,7 @@ public class AccountController {
 
     @ResponseStatus(HttpStatus.OK)
     @PatchMapping("/{number}")
-    public void updateStatus(@PathVariable Long number, @RequestParam Status status) {
+    public void updateStatus(@PathVariable Long number, @RequestParam AccountStatus status) {
         service.updateStatus(number, status);
     }
 

@@ -1,7 +1,7 @@
 package com.lariss.bankproject.dto;
 
 import com.lariss.bankproject.enumeration.AccountType;
-import com.lariss.bankproject.enumeration.Status;
+import com.lariss.bankproject.enumeration.AccountStatus;
 import com.lariss.bankproject.model.Account;
 
 import java.math.BigDecimal;
@@ -12,7 +12,7 @@ public record AccountViewDTO(
         LocalDate createDate,
         BigDecimal balance,
         AccountType accountType,
-        Status status) {
+        AccountStatus status) {
     public AccountViewDTO(Account account) {
         this(account.getNumber(), account.getCreateDate(), account.getBalance(), account.getType(), account.getStatus());
 

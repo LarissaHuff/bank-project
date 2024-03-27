@@ -1,13 +1,14 @@
 package com.lariss.bankproject.model;
 
 import com.lariss.bankproject.enumeration.AccountType;
-import com.lariss.bankproject.enumeration.Status;
+import com.lariss.bankproject.enumeration.AccountStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table
@@ -24,11 +25,13 @@ public class Account {
     private AccountType type;
 
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private AccountStatus status;
 
     @ManyToOne
     @JoinColumn(name = "person_id")
     private Person person;
 
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+    private List<Movement> movements;
 
 }

@@ -2,7 +2,8 @@ package com.lariss.bankproject.service;
 
 import com.lariss.bankproject.dto.AccountDTO;
 import com.lariss.bankproject.enumeration.AccountType;
-import com.lariss.bankproject.enumeration.Status;
+import com.lariss.bankproject.enumeration.AccountStatus;
+import com.lariss.bankproject.exception.BusinessException;
 import com.lariss.bankproject.exception.NotFoundException;
 import com.lariss.bankproject.model.Account;
 import com.lariss.bankproject.model.Person;
@@ -27,12 +28,13 @@ public class AccountServiceImpl implements AccountService {
 
         verifyIfPersonHasAccountOfType(accounts, accountDTO.type());
 
+        //TODO use model mapper
         Account account = new Account();
 
         account.setType(accountDTO.type());
         account.setCreateDate(LocalDate.now());
         account.setBalance(BigDecimal.ZERO);
-        account.setStatus(Status.ACTIVE);
+        account.setStatus(AccountStatus.ACTIVE);
         account.setPerson(person);
 
         return repository.save(account).getNumber();
@@ -46,7 +48,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public void updateStatus(Long number, Status status) {
+    public void updateStatus(Long number, AccountStatus status) {
         Account account = findById(number);
         account.setStatus(status);
         repository.save(account);
@@ -57,11 +59,16 @@ public class AccountServiceImpl implements AccountService {
         return repository.findById(number).orElseThrow(() -> new NotFoundException("Account"));
     }
 
+    @Override
+    public void save(Account account) {
+        repository.save(account);
+    }
+
     private void verifyIfPersonHasAccountOfType(List<Account> accounts, AccountType type) {
         boolean result = accounts.stream()
                 .anyMatch(it -> it.getType() == type);
         if (result) {
-            throw new RuntimeException("Person already has an account of this type.");
+            throw new BusinessException("Person already has an account of this type.");
         }
     }
 }

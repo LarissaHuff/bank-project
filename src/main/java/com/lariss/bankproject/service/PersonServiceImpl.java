@@ -19,6 +19,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Long register(PersonDTO personDTO) {
+        //TODO use model mapper
         Address address = new Address();
         address.setPostalCode(personDTO.address().postalCode());
         address.setCity(personDTO.address().city());
@@ -70,6 +71,7 @@ public class PersonServiceImpl implements PersonService {
     public void update(Long id, PersonDTO personDTO) {
         Person person = findById(id);
 
+        //TODO use model mapper
         Address address = person.getAddress();
         address.setPostalCode(personDTO.address().postalCode());
         address.setCity(personDTO.address().city());
