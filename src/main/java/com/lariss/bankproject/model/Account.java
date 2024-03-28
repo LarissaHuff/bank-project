@@ -1,7 +1,7 @@
 package com.lariss.bankproject.model;
 
-import com.lariss.bankproject.enumeration.AccountType;
 import com.lariss.bankproject.enumeration.AccountStatus;
+import com.lariss.bankproject.enumeration.AccountType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

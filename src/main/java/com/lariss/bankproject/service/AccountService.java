@@ -1,8 +1,8 @@
 package com.lariss.bankproject.service;
 
 import com.lariss.bankproject.dto.AccountDTO;
-import com.lariss.bankproject.enumeration.AccountType;
 import com.lariss.bankproject.enumeration.AccountStatus;
+import com.lariss.bankproject.enumeration.AccountType;
 import com.lariss.bankproject.model.Account;
 
 import java.util.List;

@@ -7,13 +7,12 @@ import com.lariss.bankproject.model.Person;
 import com.lariss.bankproject.service.PersonService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
 
-@Controller
+@RestController
 @AllArgsConstructor
 @RequestMapping("/persons")
 public class PersonController {

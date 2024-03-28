@@ -19,24 +19,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Long register(PersonDTO personDTO) {
-        //TODO use model mapper
-        Address address = new Address();
-        address.setPostalCode(personDTO.address().postalCode());
-        address.setCity(personDTO.address().city());
-        address.setNumber(personDTO.address().number());
-        address.setCountry(personDTO.address().country());
-        address.setNeighbourhood(personDTO.address().neighbourhood());
-        address.setStreet(personDTO.address().street());
-
-        Person person = new Person();
-        person.setName(personDTO.name());
-        person.setEmail(personDTO.email());
-        person.setBirthCity(personDTO.birthCity());
-        person.setDocumentNumber(personDTO.documentNumber());
-        person.setBirthDate(personDTO.birthDate());
-        person.setDocumentType(personDTO.documentType());
-        person.setAddress(address);
-
+        Person person = mapToModel(personDTO, new Person(), new Address());
         return personRepository.save(person).getId();
 
     }
@@ -71,8 +54,12 @@ public class PersonServiceImpl implements PersonService {
     public void update(Long id, PersonDTO personDTO) {
         Person person = findById(id);
 
-        //TODO use model mapper
-        Address address = person.getAddress();
+        Person updatedPerson = mapToModel(personDTO, person, person.getAddress());
+
+        personRepository.save(updatedPerson);
+    }
+
+    private static Person mapToModel(PersonDTO personDTO, Person person, Address address) {
         address.setPostalCode(personDTO.address().postalCode());
         address.setCity(personDTO.address().city());
         address.setNumber(personDTO.address().number());
@@ -80,14 +67,13 @@ public class PersonServiceImpl implements PersonService {
         address.setNeighbourhood(personDTO.address().neighbourhood());
         address.setStreet(personDTO.address().street());
 
-        person.setDocumentType(personDTO.documentType());
         person.setName(personDTO.name());
         person.setEmail(personDTO.email());
-        person.setAddress(address);
-        person.setDocumentNumber(personDTO.documentNumber());
         person.setBirthCity(personDTO.birthCity());
+        person.setDocumentNumber(personDTO.documentNumber());
         person.setBirthDate(personDTO.birthDate());
-
-        personRepository.save(person);
+        person.setDocumentType(personDTO.documentType());
+        person.setAddress(address);
+        return person;
     }
 }

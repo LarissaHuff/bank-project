@@ -1,7 +1,7 @@
 package com.lariss.bankproject.dto;
 
-import com.lariss.bankproject.enumeration.AccountType;
 import com.lariss.bankproject.enumeration.AccountStatus;
+import com.lariss.bankproject.enumeration.AccountType;
 import com.lariss.bankproject.model.Account;
 
 import java.math.BigDecimal;

@@ -2,19 +2,18 @@ package com.lariss.bankproject.controller;
 
 import com.lariss.bankproject.dto.AccountDTO;
 import com.lariss.bankproject.dto.AccountViewDTO;
-import com.lariss.bankproject.enumeration.AccountType;
 import com.lariss.bankproject.enumeration.AccountStatus;
+import com.lariss.bankproject.enumeration.AccountType;
 import com.lariss.bankproject.service.AccountService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
 
-@Controller
+@RestController
 @AllArgsConstructor
 @RequestMapping("/accounts")
 public class AccountController {

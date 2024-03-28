@@ -1,8 +1,8 @@
 package com.lariss.bankproject.service;
 
 import com.lariss.bankproject.dto.AccountDTO;
-import com.lariss.bankproject.enumeration.AccountType;
 import com.lariss.bankproject.enumeration.AccountStatus;
+import com.lariss.bankproject.enumeration.AccountType;
 import com.lariss.bankproject.exception.BusinessException;
 import com.lariss.bankproject.exception.NotFoundException;
 import com.lariss.bankproject.model.Account;
@@ -28,9 +28,7 @@ public class AccountServiceImpl implements AccountService {
 
         verifyIfPersonHasAccountOfType(accounts, accountDTO.type());
 
-        //TODO use model mapper
         Account account = new Account();
-
         account.setType(accountDTO.type());
         account.setCreateDate(LocalDate.now());
         account.setBalance(BigDecimal.ZERO);
