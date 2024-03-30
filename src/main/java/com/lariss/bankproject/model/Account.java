@@ -1,6 +1,7 @@
 package com.lariss.bankproject.model;
 
 import com.lariss.bankproject.enumeration.AccountStatus;
+import com.lariss.bankproject.enumeration.AccountStatusDetail;
 import com.lariss.bankproject.enumeration.AccountType;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -26,6 +27,9 @@ public class Account {
 
     @Enumerated(EnumType.STRING)
     private AccountStatus status;
+
+    @Enumerated(EnumType.STRING)
+    private AccountStatusDetail statusDetail;
 
     @ManyToOne
     @JoinColumn(name = "person_id")

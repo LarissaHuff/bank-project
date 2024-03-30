@@ -2,6 +2,7 @@ package com.lariss.bankproject.service;
 
 import com.lariss.bankproject.dto.AccountDTO;
 import com.lariss.bankproject.enumeration.AccountStatus;
+import com.lariss.bankproject.enumeration.AccountStatusDetail;
 import com.lariss.bankproject.enumeration.AccountType;
 import com.lariss.bankproject.model.Account;
 
@@ -12,7 +13,7 @@ public interface AccountService {
 
     List<Account> findByPersonIdAndType(Long personId, AccountType type);
 
-    void updateStatus(Long number, AccountStatus status);
+    void updateStatus(Long number, AccountStatus status, AccountStatusDetail statusDetail);
 
     Account findById(Long number);
 

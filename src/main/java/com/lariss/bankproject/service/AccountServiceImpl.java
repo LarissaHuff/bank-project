@@ -2,6 +2,7 @@ package com.lariss.bankproject.service;
 
 import com.lariss.bankproject.dto.AccountDTO;
 import com.lariss.bankproject.enumeration.AccountStatus;
+import com.lariss.bankproject.enumeration.AccountStatusDetail;
 import com.lariss.bankproject.enumeration.AccountType;
 import com.lariss.bankproject.exception.BusinessException;
 import com.lariss.bankproject.exception.NotFoundException;
@@ -46,9 +47,10 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public void updateStatus(Long number, AccountStatus status) {
+    public void updateStatus(Long number, AccountStatus status, AccountStatusDetail statusDetail) {
         Account account = findById(number);
         account.setStatus(status);
+        account.setStatusDetail(statusDetail);
         repository.save(account);
     }
 

@@ -2,6 +2,7 @@ package com.lariss.bankproject.service;
 
 import com.lariss.bankproject.dto.MovementDTO;
 import com.lariss.bankproject.dto.TransferMovementDTO;
+import com.lariss.bankproject.enumeration.AccountStatus;
 import com.lariss.bankproject.enumeration.MovementType;
 import com.lariss.bankproject.exception.BusinessException;
 import com.lariss.bankproject.model.Account;
@@ -21,6 +22,10 @@ public class MovementServiceImpl implements MovementService {
     @Override
     public void registerMovement(MovementDTO movementDTO) {
         Account account = accountService.findById(movementDTO.accountId());
+        if (account.getStatus() != AccountStatus.ACTIVE) {
+            throw new BusinessException("ERROR: Account is " + account.getStatus() + " " + account.getStatusDetail().getDescription());
+        }
+
         updateAccountBalance(account, movementDTO.amount(), movementDTO.type());
 
         Movement movement = new Movement();
